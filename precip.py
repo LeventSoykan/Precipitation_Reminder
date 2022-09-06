@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 def get_forecast(latitude, longitude, api_key):
     source = requests.get(f'https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={api_key}')
     forecast_json = json.loads(source.text)
+    print(forecast_json)
     forecast = ''
     tomorrow = (datetime.today()+timedelta(days=1)).date()
     for day in forecast_json['list']:
