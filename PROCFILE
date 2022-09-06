@@ -1,2 +1,0 @@
-web: python precip.py
-worker: python precip.py
