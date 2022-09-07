@@ -5,6 +5,7 @@ import smtplib, ssl
 import email.message
 from datetime import datetime, timedelta
 
+
 def get_forecast(latitude, longitude, api_key):
     source = requests.get(f'https://api.openweathermap.org/data/2.5/forecast?lat={latitude}&lon={longitude}&appid={api_key}')
     forecast_json = json.loads(source.text)
@@ -19,7 +20,7 @@ def get_forecast(latitude, longitude, api_key):
 
 def send_forecast_email(port, sender_email, password, receiver_email, message, date):
     context = ssl.create_default_context()
-    with smtplib.SMTP("smtp.gmail.com", port) as server:
+    with smtplib.SMTP("smtp.zoho.eu", port) as server:
         server.ehlo()  # Can be omitted
         server.starttls(context=context)
         server.ehlo()  # Can be omitted
@@ -38,7 +39,7 @@ if __name__ == '__main__':
     latitude = 40.911753
     longitude = 29.251945
     port = 587  # For SSL
-    sender_email = "leventsoykan83@gmail.com"
+    sender_email = "leventsoykan@zohomail.eu"
     receiver_email = "levent_soykan@yahoo.com"
     date, message = get_forecast(latitude, longitude, api_key)
     send_forecast_email(port, sender_email, gmail_pass, receiver_email, message, date)
