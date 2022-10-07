@@ -17,19 +17,19 @@ def get_forecast(latitude, longitude, api_key):
         if day_datetime.date() == datetime.today().date():
             weather_desc = day['weather'][0]['description']
             forecast += f"Date: {day['dt_txt']} - Weather: {weather_desc}\n"
-            rain_today = 'rain' in weather_desc
+            rain_today = 'rain' in forecast
     forecast += '\nTOMORROW\n'
     tomorrow = (datetime.today() + timedelta(days=1)).date()
     for day in forecast_json['list']:
         day_datetime = datetime.strptime(day['dt_txt'], '%Y-%m-%d %H:%M:%S')
         if day_datetime.date() == tomorrow:
             weather_desc = day['weather'][0]['description']
-            forecast += f"Date: {day['dt_txt']} - Weather: {day['weather'][0]['description']}\n"
-            rain_tomorrow = 'rain' in weather_desc
+            forecast += f"Date: {day['dt_txt']} - Weather: {weather_desc}\n"
+            rain_tomorrow = 'rain' in forecast
     message_detail = {
         'date': datetime.today().date(),
         'forecast': forecast,
-        'rain_today' : rain_today,
+        'rain_today': rain_today,
         'rain_tomorrow': rain_tomorrow
     }
     return message_detail
