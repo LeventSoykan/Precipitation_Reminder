@@ -1,4 +1,4 @@
 .xml
-reminderenv/
+venv/
 .ipnyb
 .idea/

@@ -1,0 +1,4 @@
+#Cron for running python script daily
+*/1 * * * * python3 /app/precip.py >> /var/log/cron.log 2>&1
+
+																			
